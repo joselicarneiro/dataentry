@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/09/12 11:46:22.000.812,=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Project2PCH1.h</Transaction>
+    <Transaction>2017/09/12 11:46:22.000.881,=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2017/09/13 09:42:21.000.752,=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2017/09/13 09:42:21.000.667,=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Project2PCH1.h</Transaction>
+    <Transaction>2017/09/13 09:42:36.000.033,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\frmPrincipal.cpp=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2017/09/13 09:42:36.000.033,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\frmPrincipal.dfm=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2017/09/13 09:42:36.000.033,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\frmPrincipal.h=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
+    <Transaction>2017/09/13 09:42:45.000.777,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\Project2PCH1.h=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Project2PCH1.h</Transaction>
+    <Transaction>2017/09/13 09:42:53.000.508,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\DataEntry.cbproj=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Project2.cbproj</Transaction>
+    <Transaction>2017/09/13 09:42:53.000.488,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\DataEntryPCH1.h=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\Project2PCH1.h</Transaction>
+    <Transaction>2017/09/13 10:16:25.000.113,=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\UIAUTOMATIONCORE.lib</Transaction>
+    <Transaction>2017/09/13 11:21:36.000.936,=C:\Windows\System32\UIAutomationCore.dll</Transaction>
+    <Transaction>2017/09/13 11:22:54.000.443,C:\Windows\System32\UIAutomationCore.dll=</Transaction>
+    <Transaction>2017/09/13 11:24:23.000.210,=C:\Windows\System32\UIAutomationCore.dll</Transaction>
+    <Transaction>2017/09/13 11:29:03.000.235,C:\Windows\System32\UIAutomationCore.dll=</Transaction>
+    <Transaction>2017/09/13 11:33:31.000.468,=C:\Windows\System32\UIAutomationCore.dll</Transaction>
+    <Transaction>2017/09/13 13:40:26.000.225,C:\Windows\System32\UIAutomationCore.dll=</Transaction>
+    <Transaction>2017/09/13 13:40:39.000.095,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\UIAUTOMATIONCORE.lib=</Transaction>
+    <Transaction>2017/09/13 13:41:05.000.998,=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\UIAutomationCore.dll</Transaction>
+    <Transaction>2017/09/13 13:43:49.000.713,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\UIAutomationCore.dll=</Transaction>
+    <Transaction>2017/09/13 15:57:33.000.625,=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\Unit1.cpp</Transaction>
+  </Transactions>
+	<BT_BuildType>Debug</BT_BuildType>
+</BorlandProject>
