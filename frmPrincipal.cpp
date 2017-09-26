@@ -34,9 +34,32 @@ void InsertText(IUIAutomationElement *Elemento, wchar_t *Valor) {
 	padrao->SetValue(Valor);
 }
 
-void BuscaElemento(IUIAutomationElement *pTipoElemento, IUIAutomationElement *pNomeElemento){
-	IUIAutomationTreeWalker *pElemento;
-	pElemento->GetFirstChildElement(pTipoElemento, &pNomeElemento);
+void BuscaElemento(IUIAutomationElement *pTipoElemento, IUIAutomationElement **pValorElemento){
+//	IUIAutomationTreeWalker *pElemento;
+
+	IUIAutomationElement* pRoot;
+	IUIAutomationElement* pFound;
+	VARIANT varProp;
+	varProp.vt = VT_BSTR;
+	varProp.bstrVal = SysAllocString(windowName);
+
+	wchar_t *name;
+
+	// Get the desktop element
+	HRESULT hr = g_pNexio->GetRootElement(&pRoot);
+	// Get a top-level element by name, such as "Program Manager"
+	if (pRoot) {
+		IUIAutomationCondition* pCondition;
+		g_pNexio->CreatePropertyCondition(UIA_NamePropertyId,
+			varProp, &pCondition);
+		pRoot->FindFirst(TreeScope_Children, pCondition, &pFound);
+		pRoot->Release();
+		pCondition->Release();
+	}
+
+	VariantClear(&varProp);
+
+	return pFound;
 }
 
 void UI_Spy() {
@@ -56,16 +79,16 @@ void UI_Spy() {
 
 		for (int i = 0; i < 10; i++) {
 			for (int j = 5; j > 0; j--) {
-				Sleep(1000);
+				Sleep(100);
 				printf("%d ", j);
 			}
 			GetCursorPos(&p);
 			if (pAuto->ElementFromPoint(p, &pElm) == S_OK) {
 				wprintf(L"\nPOSITION x = %d, y = %d\n", p.x, p.y);
-				InsertText(pElm, L"Roger");
 				BSTR str;
 				pElm->get_CurrentAutomationId(&str);
 				wprintf(L"-Name = %s\n", str);
+				InsertText(pElm, str);
 				SysFreeString(str);
 
 				pElm->get_CurrentLocalizedControlType(&str);
@@ -131,19 +154,16 @@ void UI_Spy() {
 HRESULT InitializeUIAutomation()
 {
 	CoInitialize(NULL);
-    HRESULT hr =
+	HRESULT hr =
 		CoCreateInstance(__uuidof(CUIAutomation),
-            NULL, CLSCTX_INPROC_SERVER,
-            __uuidof(IUIAutomation),
+			NULL, CLSCTX_INPROC_SERVER,
+			__uuidof(IUIAutomation),
 			(void**)&g_pNexio);
-    return (hr);
+	return (hr);
 }
 
-
-IUIAutomationElement* GetTopLevelWindowByName(LPWSTR windowName)
-{
-	if (!windowName)
-	{
+IUIAutomationElement* GetTopLevelWindowByName(LPWSTR windowName) {
+	if (!windowName){
 		return NULL;
 	}
 
@@ -158,8 +178,7 @@ IUIAutomationElement* GetTopLevelWindowByName(LPWSTR windowName)
 	// Get the desktop element
 	HRESULT hr = g_pNexio->GetRootElement(&pRoot);
 	// Get a top-level element by name, such as "Program Manager"
-	if (pRoot)
-	{
+	if (pRoot) {
 		IUIAutomationCondition* pCondition;
 		g_pNexio->CreatePropertyCondition(UIA_NamePropertyId,
 			varProp, &pCondition);
@@ -173,14 +192,15 @@ IUIAutomationElement* GetTopLevelWindowByName(LPWSTR windowName)
 	return pFound;
 }
 
-void __fastcall Tprincipal::btn_AtualizarClick(TObject *Sender)
-{
+void __fastcall Tprincipal::btn_AtualizarClick(TObject *Sender) {
 	InitializeUIAutomation();
-	BuscaElemento("", L"Userfield1");
+	IUIAutomationElement *pEl;
+	IUIAutomationElement **first;
+
+	BuscaElemento(pEl, first);
 	CoUninitialize();
 }
 //---------------------------------------------------------------------------
-
 
 void __fastcall Tprincipal::btn_LerDadosClick(TObject *Sender)
 {
@@ -188,7 +208,7 @@ void __fastcall Tprincipal::btn_LerDadosClick(TObject *Sender)
 	UI_Spy();
 
 	InitializeUIAutomation();
-	test=GetTopLevelWindowByName(L"Nexio Ingest Suite Control Center");
+//	test=GetTopLevelWindowByName(L"Nexio Ingest Suite Control Center");
 	CoUninitialize();
 }
 //---------------------------------------------------------------------------
@@ -198,4 +218,3 @@ void __fastcall Tprincipal::btn_CancelarClick(TObject *Sender)
 	principal->Close();
 }
 //---------------------------------------------------------------------------
-
