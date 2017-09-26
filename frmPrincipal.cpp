@@ -34,26 +34,21 @@ void InsertText(IUIAutomationElement *Elemento, wchar_t *Valor) {
 	padrao->SetValue(Valor);
 }
 
-void BuscaElemento(IUIAutomationElement *pTipoElemento, IUIAutomationElement **pValorElemento){
-//	IUIAutomationTreeWalker *pElemento;
+IUIAutomationElement* BuscaElemento(IUIAutomationElement *pElementRoot, LPWSTR pAutomationID){
 
-	IUIAutomationElement* pRoot;
 	IUIAutomationElement* pFound;
 	VARIANT varProp;
 	varProp.vt = VT_BSTR;
-	varProp.bstrVal = SysAllocString(windowName);
+	varProp.bstrVal = SysAllocString(pAutomationID);
 
-	wchar_t *name;
+	HRESULT hr = g_pNexio->GetRootElement(&pElementRoot);
 
-	// Get the desktop element
-	HRESULT hr = g_pNexio->GetRootElement(&pRoot);
-	// Get a top-level element by name, such as "Program Manager"
-	if (pRoot) {
+	if (pElementRoot) {
 		IUIAutomationCondition* pCondition;
-		g_pNexio->CreatePropertyCondition(UIA_NamePropertyId,
+		g_pNexio->CreatePropertyCondition(UIA_AutomationIdPropertyId,
 			varProp, &pCondition);
-		pRoot->FindFirst(TreeScope_Children, pCondition, &pFound);
-		pRoot->Release();
+		pElementRoot->FindFirst(TreeScope_Children, pCondition, &pFound);
+		pElementRoot->Release();
 		pCondition->Release();
 	}
 
@@ -173,11 +168,8 @@ IUIAutomationElement* GetTopLevelWindowByName(LPWSTR windowName) {
 	varProp.vt = VT_BSTR;
 	varProp.bstrVal = SysAllocString(windowName);
 
-	wchar_t *name;
-
-	// Get the desktop element
 	HRESULT hr = g_pNexio->GetRootElement(&pRoot);
-	// Get a top-level element by name, such as "Program Manager"
+
 	if (pRoot) {
 		IUIAutomationCondition* pCondition;
 		g_pNexio->CreatePropertyCondition(UIA_NamePropertyId,
@@ -194,13 +186,16 @@ IUIAutomationElement* GetTopLevelWindowByName(LPWSTR windowName) {
 
 void __fastcall Tprincipal::btn_AtualizarClick(TObject *Sender) {
 	InitializeUIAutomation();
-	IUIAutomationElement *pEl;
-	IUIAutomationElement **first;
+	IUIAutomationElement *result, *pAplicacao;
 
-	BuscaElemento(pEl, first);
+	pAplicacao=GetTopLevelWindowByName(L"Nexio Ingest Suite Control Center");
+    pAplicacao->SetFocus();
+
+	result=BuscaElemento(pAplicacao, L"TimelineMetaData_USERFIELD1");
+//	result->SetFocus();
+
 	CoUninitialize();
 }
-//---------------------------------------------------------------------------
 
 void __fastcall Tprincipal::btn_LerDadosClick(TObject *Sender)
 {
@@ -211,10 +206,8 @@ void __fastcall Tprincipal::btn_LerDadosClick(TObject *Sender)
 //	test=GetTopLevelWindowByName(L"Nexio Ingest Suite Control Center");
 	CoUninitialize();
 }
-//---------------------------------------------------------------------------
 
 void __fastcall Tprincipal::btn_CancelarClick(TObject *Sender)
 {
 	principal->Close();
 }
-//---------------------------------------------------------------------------

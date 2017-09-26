@@ -3,14 +3,14 @@
 	<Transactions>
     <Transaction>2017/09/12 11:46:22.000.812,=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Project2PCH1.h</Transaction>
     <Transaction>2017/09/12 11:46:22.000.881,=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>2017/09/13 09:42:21.000.752,=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
     <Transaction>2017/09/13 09:42:21.000.667,=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Project2PCH1.h</Transaction>
-    <Transaction>2017/09/13 09:42:36.000.033,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\frmPrincipal.cpp=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>2017/09/13 09:42:36.000.033,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\frmPrincipal.dfm=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2017/09/13 09:42:36.000.033,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\frmPrincipal.h=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
-    <Transaction>2017/09/13 09:42:45.000.777,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\Project2PCH1.h=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Project2PCH1.h</Transaction>
-    <Transaction>2017/09/13 09:42:53.000.508,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\DataEntry.cbproj=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Project2.cbproj</Transaction>
-    <Transaction>2017/09/13 09:42:53.000.488,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\DataEntryPCH1.h=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\Project2PCH1.h</Transaction>
+    <Transaction>2017/09/13 09:42:21.000.752,=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2017/09/13 09:42:36.000.033,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.h=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\frmPrincipal.h</Transaction>
+    <Transaction>2017/09/13 09:42:36.000.033,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.cpp=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\frmPrincipal.cpp</Transaction>
+    <Transaction>2017/09/13 09:42:36.000.033,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\frmPrincipal.dfm</Transaction>
+    <Transaction>2017/09/13 09:42:45.000.777,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Project2PCH1.h=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\Project2PCH1.h</Transaction>
+    <Transaction>2017/09/13 09:42:53.000.508,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\Project2.cbproj=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\DataEntry.cbproj</Transaction>
+    <Transaction>2017/09/13 09:42:53.000.488,C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\Project2PCH1.h=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\DataEntryPCH1.h</Transaction>
     <Transaction>2017/09/13 10:16:25.000.113,=C:\Users\rogerscar\Documents\Embarcadero\Studio\Projects\DataEntry\UIAUTOMATIONCORE.lib</Transaction>
     <Transaction>2017/09/13 11:21:36.000.936,=C:\Windows\System32\UIAutomationCore.dll</Transaction>
     <Transaction>2017/09/13 11:22:54.000.443,C:\Windows\System32\UIAutomationCore.dll=</Transaction>
