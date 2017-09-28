@@ -36,25 +36,51 @@ void InsertText(IUIAutomationElement *Elemento, wchar_t *Valor) {
 
 IUIAutomationElement* BuscaElemento(IUIAutomationElement *pElementRoot, LPWSTR pAutomationID){
 
-	IUIAutomationElement* pFound;
-	VARIANT varProp;
+	IUIAutomationElementArray* pFound;
+	VARIANT varProp, varName;
+
 	varProp.vt = VT_BSTR;
-	varProp.bstrVal = SysAllocString(pAutomationID);
+	varProp.bstrVal = SysAllocString(L"");
 
-	HRESULT hr = g_pNexio->GetRootElement(&pElementRoot);
+	varName.vt = VT_BSTR;
+	varName.bstrVal = SysAllocString(L"");
 
-	if (pElementRoot) {
-		IUIAutomationCondition* pCondition;
-		g_pNexio->CreatePropertyCondition(UIA_AutomationIdPropertyId,
-			varProp, &pCondition);
-		pElementRoot->FindFirst(TreeScope_Children, pCondition, &pFound);
-		pElementRoot->Release();
+//	varProp.vt = VT_BSTR;
+//	varProp.bstrVal = SysAllocString(pAutomationID);
+
+//	HRESULT hr = g_pNexio->GetRootElement(&pElementRoot);
+
+	IUIAutomationCondition* pCondition;
+	IUIAutomationCondition* pCondName;
+	IUIAutomationCondition* pCondComb;
+	HRESULT hr=g_pNexio->CreatePropertyCondition(UIA_LocalizedControlTypePropertyId,
+		varProp, &pCondition);
+
+	HRESULT hg=g_pNexio->CreatePropertyCondition(UIA_NamePropertyId,
+		varName, &pCondName);
+
+	HRESULT hc=g_pNexio->CreateAndCondition(pCondition, pCondName, &pCondComb);
+
+
+	//HRESULT hr=g_pNexio->CreatePropertyCondition(UIA_AutomationIdPropertyId,
+	//	varProp, &pCondition);
+
+	if (SUCCEEDED(hr)) {
+		hr = pElementRoot->FindAll(TreeScope_Children, pCondComb, &pFound);
+//		pElementRoot->Release();
 		pCondition->Release();
+		pCondName->Release();
+		pCondComb->Release();
+		int tamanho;
+		pFound->get_Length(&tamanho);
+		for (int i = 0; i < tamanho; i++) {
+			wprintf(L"-Contem: %d\n", pFound[i]);
+		}
 	}
 
 	VariantClear(&varProp);
 
-	return pFound;
+	return NULL;
 }
 
 void UI_Spy() {
@@ -189,10 +215,10 @@ void __fastcall Tprincipal::btn_AtualizarClick(TObject *Sender) {
 	IUIAutomationElement *result, *pAplicacao;
 
 	pAplicacao=GetTopLevelWindowByName(L"Nexio Ingest Suite Control Center");
-    pAplicacao->SetFocus();
+	pAplicacao->SetFocus();
 
-	result=BuscaElemento(pAplicacao, L"TimelineMetaData_USERFIELD1");
-//	result->SetFocus();
+	result=BuscaElemento(pAplicacao, L"edit");
+//	result=BuscaElemento(pAplicacao, L"TimelineMetaData_USERFIELD1");
 
 	CoUninitialize();
 }
