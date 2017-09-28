@@ -40,10 +40,10 @@ IUIAutomationElement* BuscaElemento(IUIAutomationElement *pElementRoot, LPWSTR p
 	VARIANT varProp, varName;
 
 	varProp.vt = VT_BSTR;
-	varProp.bstrVal = SysAllocString(L"");
+	varProp.bstrVal = SysAllocString(L"button");
 
 	varName.vt = VT_BSTR;
-	varName.bstrVal = SysAllocString(L"");
+	varName.bstrVal = SysAllocString(L"ok");
 
 //	varProp.vt = VT_BSTR;
 //	varProp.bstrVal = SysAllocString(pAutomationID);
@@ -56,8 +56,8 @@ IUIAutomationElement* BuscaElemento(IUIAutomationElement *pElementRoot, LPWSTR p
 	HRESULT hr=g_pNexio->CreatePropertyCondition(UIA_LocalizedControlTypePropertyId,
 		varProp, &pCondition);
 
-	HRESULT hg=g_pNexio->CreatePropertyCondition(UIA_NamePropertyId,
-		varName, &pCondName);
+	HRESULT hg=g_pNexio->CreatePropertyCondition(UIA_NamePropertyId, varName,
+		&pCondName);
 
 	HRESULT hc=g_pNexio->CreateAndCondition(pCondition, pCondName, &pCondComb);
 
@@ -66,7 +66,7 @@ IUIAutomationElement* BuscaElemento(IUIAutomationElement *pElementRoot, LPWSTR p
 	//	varProp, &pCondition);
 
 	if (SUCCEEDED(hr)) {
-		hr = pElementRoot->FindAll(TreeScope_Children, pCondComb, &pFound);
+		hr = pElementRoot->FindAll(TreeScope_Subtree, pCondComb, &pFound);
 //		pElementRoot->Release();
 		pCondition->Release();
 		pCondName->Release();
@@ -74,7 +74,7 @@ IUIAutomationElement* BuscaElemento(IUIAutomationElement *pElementRoot, LPWSTR p
 		int tamanho;
 		pFound->get_Length(&tamanho);
 		for (int i = 0; i < tamanho; i++) {
-			wprintf(L"-Contem: %d\n", pFound[i]);
+			wprintf(L"Contem: %d\n", pFound[i]);
 		}
 	}
 
@@ -215,9 +215,9 @@ void __fastcall Tprincipal::btn_AtualizarClick(TObject *Sender) {
 	IUIAutomationElement *result, *pAplicacao;
 
 	pAplicacao=GetTopLevelWindowByName(L"Nexio Ingest Suite Control Center");
-	pAplicacao->SetFocus();
+	//pAplicacao->SetFocus();
 
-	result=BuscaElemento(pAplicacao, L"edit");
+	result=BuscaElemento(pAplicacao, L"OK");
 //	result=BuscaElemento(pAplicacao, L"TimelineMetaData_USERFIELD1");
 
 	CoUninitialize();
