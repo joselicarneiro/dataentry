@@ -2,6 +2,7 @@
 
 #include <vcl.h>
 #include <UIAutomation.h>
+#include <stdio.h>
 
 #pragma hdrstop
 
@@ -34,25 +35,60 @@ void InsertText(IUIAutomationElement *Elemento, wchar_t *Valor) {
 	padrao->SetValue(Valor);
 }
 
+IUIAutomationElement* BuscaElemento(IUIAutomationElement *pElementRoot, LPWSTR pAutoID, int MaxDepth) {
+	if(MaxDepth==0) {
+		return NULL;
+	}
+
+	/*
+
+	VARIANT varBusca;
+	varBusca.vt = VT_BSTR;
+	varBusca.bstrVal = SysAllocString(pAutomationID);
+
+	*/
+
+	IUIAutomationTreeWalker* Walker;
+	IUIAutomationElement* pFound;
+	int tamanho;
+	wchar_t **nomeElement;
+	wchar_t **nomeAutomationID;
+
+	g_pNexio->get_RawViewWalker(&Walker);
+	Walker->GetFirstChildElement(pElementRoot, &pFound);
+	int propId;
+
+	while(pFound != NULL) {
+		pFound->get_CurrentName(nomeElement);
+		pFound->get_CurrentAutomationId(nomeAutomationID);
+		if((nomeElement==pAutoID) || (nomeAutomationID==pAutoID)) {
+			return pFound;
+		}
+		Walker->GetNextSiblingElement(pFound, &pFound);
+	}
+
+//	VariantClear(&varBusca);
+
+	return NULL;
+}
+
 IUIAutomationElement* BuscaElemento(IUIAutomationElement *pElementRoot, LPWSTR pAutomationID){
 
 	IUIAutomationElementArray* pFound;
-	VARIANT varProp, varName;
+	VARIANT varProp;
+	VARIANT varName;
 
 	varProp.vt = VT_BSTR;
-	varProp.bstrVal = SysAllocString(L"button");
+	varProp.bstrVal = SysAllocString(L"combo");
 
 	varName.vt = VT_BSTR;
-	varName.bstrVal = SysAllocString(L"ok");
-
-//	varProp.vt = VT_BSTR;
-//	varProp.bstrVal = SysAllocString(pAutomationID);
-
-//	HRESULT hr = g_pNexio->GetRootElement(&pElementRoot);
+	varName.bstrVal = SysAllocString(L"");
 
 	IUIAutomationCondition* pCondition;
 	IUIAutomationCondition* pCondName;
 	IUIAutomationCondition* pCondComb;
+	IUIAutomationElement*   pElement;
+
 	HRESULT hr=g_pNexio->CreatePropertyCondition(UIA_LocalizedControlTypePropertyId,
 		varProp, &pCondition);
 
@@ -66,15 +102,20 @@ IUIAutomationElement* BuscaElemento(IUIAutomationElement *pElementRoot, LPWSTR p
 	//	varProp, &pCondition);
 
 	if (SUCCEEDED(hr)) {
-		hr = pElementRoot->FindAll(TreeScope_Subtree, pCondComb, &pFound);
+		hr = pElementRoot->FindAll(TreeScope_Subtree, pCondition, &pFound);
 //		pElementRoot->Release();
 		pCondition->Release();
 		pCondName->Release();
 		pCondComb->Release();
 		int tamanho;
+		wchar_t **nomeElement;
+		wchar_t **nomeAutomationID;
 		pFound->get_Length(&tamanho);
-		for (int i = 0; i < tamanho; i++) {
-			wprintf(L"Contem: %d\n", pFound[i]);
+		for (int i = 0; i < tamanho; i ++) {
+			pFound->GetElement(i, &pElement);
+//			pElement->get_CurrentName(nomeElement);
+			pElement->get_CurrentAutomationId(nomeAutomationID);
+//			wprintf(L"Contem: %s %s\n", nomeElement, nomeAutomationID);
 		}
 	}
 
@@ -215,10 +256,11 @@ void __fastcall Tprincipal::btn_AtualizarClick(TObject *Sender) {
 	IUIAutomationElement *result, *pAplicacao;
 
 	pAplicacao=GetTopLevelWindowByName(L"Nexio Ingest Suite Control Center");
+//	pAplicacao=GetTopLevelWindowByName(L"calc.exe");
 	//pAplicacao->SetFocus();
 
-	result=BuscaElemento(pAplicacao, L"OK");
-//	result=BuscaElemento(pAplicacao, L"TimelineMetaData_USERFIELD1");
+	result=BuscaElemento(pAplicacao, L"Playout", 1);
+//	result=BuscaElemento(pAplicacao, L"TimelineMetaData_USERFIELD1", 1);
 
 	CoUninitialize();
 }
