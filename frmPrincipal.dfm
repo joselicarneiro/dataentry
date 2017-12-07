@@ -72,6 +72,7 @@ object principal: Tprincipal
     Top = 13
     Width = 237
     Height = 21
+    Color = clWindowText
     TabOrder = 0
   end
   object edt_Userfield2: TEdit
@@ -79,52 +80,52 @@ object principal: Tprincipal
     Top = 13
     Width = 237
     Height = 21
+    Color = clWindowText
     TabOrder = 1
-    Text = 'Edit5'
   end
   object edt_Userfield3: TEdit
     Left = 96
     Top = 48
     Width = 237
     Height = 21
+    Color = clWindowText
     TabOrder = 2
-    Text = 'Edit5'
   end
   object edt_Userfield4: TEdit
     Left = 401
     Top = 48
     Width = 237
     Height = 21
+    Color = clWindowText
     TabOrder = 3
-    Text = 'Edit5'
   end
   object edt_Agency: TEdit
     Left = 96
     Top = 85
     Width = 542
     Height = 21
+    Color = clWindowText
     TabOrder = 4
-    Text = 'Edit5'
   end
   object edt_Description: TEdit
     Left = 96
     Top = 125
     Width = 542
     Height = 21
+    Color = clWindowText
     TabOrder = 5
-    Text = 'Edit5'
   end
-  object btn_LerDados: TButton
-    Left = 397
+  object btn_PesqDados: TButton
+    Left = 376
     Top = 168
-    Width = 75
+    Width = 96
     Height = 25
-    Caption = '&Ler Dados'
+    Caption = '&Pesquisar Dados'
     TabOrder = 6
-    OnClick = btn_LerDadosClick
+    OnClick = btn_PesqDadosClick
   end
   object btn_Atualizar: TButton
-    Left = 479
+    Left = 478
     Top = 168
     Width = 75
     Height = 25

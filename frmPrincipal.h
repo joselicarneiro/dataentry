@@ -18,7 +18,7 @@ __published:	// IDE-managed Components
 	TEdit *edt_Userfield4;
 	TEdit *edt_Agency;
 	TEdit *edt_Description;
-	TButton *btn_LerDados;
+	TButton *btn_PesqDados;
 	TButton *btn_Atualizar;
 	TButton *btn_Cancelar;
 	TLabel *Label1;
@@ -28,11 +28,13 @@ __published:	// IDE-managed Components
 	TLabel *Label5;
 	TLabel *Label6;
 	void __fastcall btn_AtualizarClick(TObject *Sender);
-	void __fastcall btn_LerDadosClick(TObject *Sender);
+	void __fastcall btn_PesqDadosClick(TObject *Sender);
 	void __fastcall btn_CancelarClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall Tprincipal(TComponent* Owner);
+//    void WalkerControlElements(IUIAutomationElement *pElementRoot, wchar_t *automationID, wchar_t *valorElemento);
+    void WalkerControlElements(IUIAutomationElement *pElementRoot, wchar_t *automationID);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE Tprincipal *principal;
